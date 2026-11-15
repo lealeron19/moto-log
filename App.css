@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap");
+
+:root {
+  --bg: #e9ebe6;
+  --card: #f7f8f5;
+  --ink: #1c2226;
+  --muted: #5d676d;
+  --line: #c9cec7;
+  --oil: #b7791f;
+  --repair: #2f5d8a;
+  --warn: #c2410c;
+  --ok: #3f6b4f;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14181b;
+    --card: #1d2327;
+    --ink: #e8ebe6;
+    --muted: #98a2a8;
+    --line: #333c42;
+    --oil: #e0a64a;
+    --repair: #7fb0e0;
+    --warn: #f08a55;
+    --ok: #86c19a;
+    color-scheme: dark;
+  }
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Barlow", system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.wrap { max-width: 640px; margin: 0 auto; padding: 20px 16px 48px; }
+
+.top h1 {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-size: 3rem;
+  line-height: 1;
+  margin: 8px 0 4px;
+  letter-spacing: 0.01em;
+}
+.top p { margin: 0 0 20px; color: var(--muted); }
+
+h2 {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-size: 1.5rem;
+  margin: 0 0 12px;
+}
+
+.reminders { display: grid; gap: 8px; margin-bottom: 16px; }
+.reminder {
+  display: flex; flex-direction: column; gap: 2px;
+  padding: 10px 12px;
+  border-left: 5px solid var(--ok);
+  background: var(--card);
+}
+.reminder.soon { border-left-color: var(--oil); }
+.reminder.due { border-left-color: var(--warn); }
+.reminder.none { border-left-color: var(--line); }
+.reminder span { color: var(--muted); font-size: 0.92rem; }
+
+.totals { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+.totals div { background: var(--card); padding: 12px 14px; border: 1px solid var(--line); }
+.totals span { display: block; color: var(--muted); font-size: 0.9rem; }
+.totals b {
+  font-family: "Barlow Condensed", "Arial Narrow", sans-serif;
+  font-size: 2rem; line-height: 1.1;
+}
+
+.card { background: var(--card); border: 1px solid var(--line); padding: 16px; margin-bottom: 24px; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.grid .wide { grid-column: 1 / -1; }
+label { display: flex; flex-direction: column; gap: 4px; font-size: 0.9rem; color: var(--muted); }
+
+input, select {
+  font: inherit; color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  padding: 10px;
+  min-height: 44px;
+  width: 100%;
+}
+input:focus-visible, select:focus-visible, button:focus-visible {
+  outline: 3px solid var(--repair);
+  outline-offset: 1px;
+}
+
+button[type="submit"] {
+  margin-top: 14px; width: 100%; min-height: 48px;
+  font: 600 1.05rem "Barlow", sans-serif;
+  background: var(--ink); color: var(--bg);
+  border: 0; cursor: pointer;
+}
+
+.listhead { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.listhead select { width: auto; max-width: 55%; }
+
+.empty { color: var(--muted); padding: 16px 0; }
+
+.list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.list li {
+  display: flex; gap: 12px; align-items: flex-start; justify-content: space-between;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--oil);
+  padding: 12px;
+}
+.list li.repair { border-left-color: var(--repair); }
+.main { flex: 1; min-width: 0; }
+.row1 { display: flex; justify-content: space-between; align-items: baseline; gap: 8px; }
+.tag { font-weight: 600; color: var(--oil); }
+.repair .tag { color: var(--repair); }
+.cost { font-family: "Barlow Condensed", "Arial Narrow", sans-serif; font-size: 1.4rem; font-weight: 700; }
+.desc { overflow-wrap: anywhere; }
+.meta { color: var(--muted); font-size: 0.88rem; margin-top: 2px; }
+
+.del {
+  font: inherit; font-size: 0.85rem; color: var(--warn);
+  background: none; border: 1px solid var(--line);
+  padding: 6px 10px; min-height: 36px; cursor: pointer;
+}
+
+@media (max-width: 420px) {
+  .grid { grid-template-columns: 1fr; }
+  .list li { flex-direction: column; }
+  .del { align-self: flex-end; }
+}
