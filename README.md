@@ -49,7 +49,7 @@ To make a production build:
 npm run build
 ```
 
-## Author
+## Student Developer
 
 - **Name:** Lea B. Leron
 - **Section:** BSINTE 2C
